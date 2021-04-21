@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"net"
 	"runtime/debug"
-	"strconv"
 	"strings"
 	"time"
 
@@ -101,12 +100,6 @@ func Start() {
 
 	DB.SetMaxOpenConns(config.GetInt("db.mysql.maxopen"))
 	DB.SetMaxIdleConns(config.GetInt("db.mysql.maxidle"))
-
-	redisDbConf := config.GetInt("redis.store")
-
-	if s, err := strconv.Atoi(config.Get("redis.db")); err == nil {
-		redisDbConf = s
-	}
 
 	list, err := net.Listen("tcp", config.Get("server.port"))
 	if err != nil {
