@@ -55,11 +55,21 @@ func (s *server) GetMove(ctx context.Context, params *moves_grpc.Params) (*moves
 }
 
 func transformToRpc(moves *model.Moves) *moves_grpc.Move {
+	var power int32 = 0
+	var accuracy int32 = 0
+
+	if moves.MoveAccuracy != nil {
+		accuracy = *moves.MoveAccuracy
+	}
+
+	if moves.MovePower != nil {
+		power = *moves.MovePower
+	}
 	return &moves_grpc.Move{
 		Id:       moves.MoveID,
 		Name:     moves.MoveName,
-		Power:    *moves.MovePower,
+		Power:    power,
 		Pp:       moves.MovePp,
-		Accuracy: *moves.MoveAccuracy,
+		Accuracy: accuracy,
 	}
 }

@@ -36,7 +36,7 @@ func (r *MovesRepository) GetMovesByPokemon(name string) ([]*model.Moves, error)
 
 	moves := make([]*model.Moves, 0)
 
-	err = database.Scan(rows, moves)
+	err = database.Scan(rows, &moves)
 
 	if err != nil {
 		return nil, err
