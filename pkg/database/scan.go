@@ -9,8 +9,6 @@ import (
 	"regexp"
 	"strings"
 	"time"
-
-	"github.com/davecgh/go-spew/spew"
 )
 
 //Field struct Field
@@ -23,7 +21,6 @@ type Field struct {
 //Scan func to scan
 func Scan(rows *sql.Rows, destination interface{}) error {
 	defer func() {
-		spew.Dump("closed")
 		rows.Close()
 	}()
 	columns, _ := rows.Columns()
@@ -40,14 +37,12 @@ func Scan(rows *sql.Rows, destination interface{}) error {
 			rows.Scan(destination)
 		}
 	default:
-		spew.Dump("--> default")
 		rv := reflect.Indirect(reflect.ValueOf(destination))
 
 		if rv.Kind() == reflect.Ptr {
 			rv = rv.Elem()
 		}
 
-		spew.Dump("--> " + rv.Kind().String())
 		switch rv.Kind() {
 		case reflect.Slice, reflect.Array:
 			modelType := rv.Type().Elem()
@@ -79,7 +74,6 @@ func Scan(rows *sql.Rows, destination interface{}) error {
 				err := rows.Scan(values...)
 
 				if err != nil {
-					spew.Dump("--> #1")
 					fmt.Println(err.Error())
 				}
 
@@ -120,7 +114,6 @@ func Scan(rows *sql.Rows, destination interface{}) error {
 				err := rows.Scan(values...)
 
 				if err != nil {
-					spew.Dump("--> #2")
 					fmt.Println(err.Error())
 					return err
 				}
