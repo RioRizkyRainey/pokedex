@@ -13,7 +13,7 @@ type PokemonRepository struct {
 }
 
 type PokemonRepositoryI interface {
-	GetPokemon(name string) model.Pokemon
+	GetPokemon(name string) (*model.Pokemon, error)
 }
 
 func InitPokemonRepository(Conn *sql.DB) *PokemonRepository {

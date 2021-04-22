@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/RioRizkyRainey/pokedex/internal/pokemon/config"
-	"github.com/RioRizkyRainey/pokedex/internal/pokemon/service/pokemon"
+	"github.com/RioRizkyRainey/pokedex/internal/moves/config"
+	"github.com/RioRizkyRainey/pokedex/internal/moves/service/moves"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/mattn/go-colorable"
 	"github.com/snowzach/rotatefilehook"
@@ -49,7 +49,7 @@ func configureLogging() {
 	currentTime := time.Now()
 
 	rotateFileHook, err := rotatefilehook.NewRotateFileHook(rotatefilehook.RotateFileConfig{
-		Filename:   "logs/pokemon-" + currentTime.Format("2006-01-02") + ".log",
+		Filename:   "logs/moves-" + currentTime.Format("2006-01-02") + ".log",
 		MaxSize:    50, // megabytes
 		MaxBackups: 3,
 		MaxAge:     7, //days
@@ -109,7 +109,7 @@ func Start() {
 
 	server := grpc.NewServer(grpc.MaxRecvMsgSize(1024*1024*32), grpc.MaxSendMsgSize(1024*1024*32))
 
-	pokemon.Server(server, DB)
+	moves.Server(server, DB)
 
 	reflection.Register(server)
 

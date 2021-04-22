@@ -6,19 +6,19 @@ import (
 )
 
 type MovesUsecase interface {
-	GetMoves(name string) (*model.Moves, error)
+	GetMovesByPokemon(name string) ([]*model.Moves, error)
 }
 
 type usecase struct {
-	movesRepo repository.MovesRepository
+	movesRepo *repository.MovesRepository
 }
 
-func InitMovesUsecase(movesRepo repository.MovesRepository) MovesUsecase {
+func InitMovesUsecase(movesRepo *repository.MovesRepository) MovesUsecase {
 	return &usecase{
 		movesRepo: movesRepo,
 	}
 }
 
-func (u *usecase) GetMoves(name string) (*model.Moves, error) {
-	return u.movesRepo.GetMoves(name)
+func (u *usecase) GetMovesByPokemon(name string) ([]*model.Moves, error) {
+	return u.movesRepo.GetMovesByPokemon(name)
 }

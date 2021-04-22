@@ -11,7 +11,7 @@ import (
 
 func Server(gserver *grpc.Server, connection *sql.DB) {
 	movesRepo := repository.InitMovesRepository(connection)
-	movesUsecase := usecase.MovesUsecase(movesRepo)
+	movesUsecase := usecase.InitMovesUsecase(movesRepo)
 
 	movesRpc.MovesServerGrpc(gserver, movesUsecase)
 }

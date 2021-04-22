@@ -9,14 +9,7 @@ message Move {
     int32 power = 3;
     int32 pp = 4;
     int32 accuracy = 5;
-    Type type = 6;
-}
-
-message Type {
-    int32 id = 1;
-    string name = 2;
-    string damage_factor = 3;
-    repeated Type type = 4;
+    string type = 6;
 }
 
 message Params {
@@ -30,11 +23,10 @@ message ErrorMessage {
     string error_user_msg = 4;
 }
 
-
 message Data {
     int32 status = 1;
     string message = 2;
-    Move data = 3;
+    repeated Move data = 3;
     ErrorMessage error = 4;
 }
 
