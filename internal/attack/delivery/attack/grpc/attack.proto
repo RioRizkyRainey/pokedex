@@ -24,6 +24,6 @@ message Data {
     ErrorMessage error = 4;
 }
 
-service PokemonHandler {
-    rpc GetPokemon(Params) returns (Data);
+service AttackHandler {
+    rpc GetDamage(Params) returns (Data);
 }

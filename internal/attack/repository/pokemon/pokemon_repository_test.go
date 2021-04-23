@@ -1,4 +1,4 @@
-package repository_test
+package pokemon_test
 
 import (
 	"regexp"
