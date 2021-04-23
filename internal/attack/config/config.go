@@ -17,24 +17,24 @@ var (
 // initialize this configuration
 func initialize() {
 	viper.SetConfigFile(".env")
-	viper.SetEnvPrefix("POKEMON")
+	viper.SetEnvPrefix("ATTACK")
 	viper.ReadInConfig()
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 	viper.AutomaticEnv()
 	defCfg = make(map[string]string)
 
-	defCfg["server.log.level"] = viper.GetString(`POKEMON_SERVER_LOG_LEVEL`) // valid values are trace, debug, info, warn, error, fatal
+	defCfg["server.log.level"] = viper.GetString(`ATTACK_SERVER_LOG_LEVEL`) // valid values are trace, debug, info, warn, error, fatal
 
-	defCfg["server.address"] = fmt.Sprintf("%s:%s", viper.GetString(`POKEMON_SERVER_HOST`), viper.GetString(`POKEMON_SERVER_PORT`))
-	defCfg["server.host"] = viper.GetString(`POKEMON_SERVER_HOST`)
-	defCfg["server.port"] = viper.GetString(`POKEMON_SERVER_PORT`)
-	defCfg["db.mysql.host"] = viper.GetString(`POKEMON_DB_MYSQL_HOST`)
-	defCfg["db.mysql.port"] = viper.GetString(`POKEMON_DB_MYSQL_PORT`)
-	defCfg["db.mysql.user"] = viper.GetString(`POKEMON_DB_MYSQL_USER`)
-	defCfg["db.mysql.password"] = viper.GetString(`POKEMON_DB_MYSQL_PASSWORD`)
-	defCfg["db.mysql.name"] = viper.GetString(`POKEMON_DB_MYSQL_NAME`)
-	defCfg["db.mysql.maxidle"] = viper.GetString(`POKEMON_DB_MYSQL_MAXIDLE`)
-	defCfg["db.mysql.maxopen"] = viper.GetString(`POKEMON_DB_MYSQL_MAXOPEN`)
+	defCfg["server.address"] = fmt.Sprintf("%s:%s", viper.GetString(`ATTACK_SERVER_HOST`), viper.GetString(`ATTACK_SERVER_PORT`))
+	defCfg["server.host"] = viper.GetString(`ATTACK_SERVER_HOST`)
+	defCfg["server.port"] = viper.GetString(`ATTACK_SERVER_PORT`)
+	defCfg["db.mysql.host"] = viper.GetString(`ATTACK_DB_MYSQL_HOST`)
+	defCfg["db.mysql.port"] = viper.GetString(`ATTACK_DB_MYSQL_PORT`)
+	defCfg["db.mysql.user"] = viper.GetString(`ATTACK_DB_MYSQL_USER`)
+	defCfg["db.mysql.password"] = viper.GetString(`ATTACK_DB_MYSQL_PASSWORD`)
+	defCfg["db.mysql.name"] = viper.GetString(`ATTACK_DB_MYSQL_NAME`)
+	defCfg["db.mysql.maxidle"] = viper.GetString(`ATTACK_DB_MYSQL_MAXIDLE`)
+	defCfg["db.mysql.maxopen"] = viper.GetString(`ATTACK_DB_MYSQL_MAXOPEN`)
 
 	for k := range defCfg {
 		err := viper.BindEnv(k)

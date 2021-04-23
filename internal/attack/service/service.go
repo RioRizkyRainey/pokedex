@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/RioRizkyRainey/pokedex/internal/pokemon/config"
-	"github.com/RioRizkyRainey/pokedex/internal/pokemon/service/pokemon"
+	"github.com/RioRizkyRainey/pokedex/internal/attack/config"
+	"github.com/RioRizkyRainey/pokedex/internal/attack/service/attack"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/mattn/go-colorable"
 	"github.com/snowzach/rotatefilehook"
@@ -109,7 +109,7 @@ func Start() {
 
 	server := grpc.NewServer(grpc.MaxRecvMsgSize(1024*1024*32), grpc.MaxSendMsgSize(1024*1024*32))
 
-	pokemon.Server(server, DB)
+	attack.Server(server, DB)
 
 	reflection.Register(server)
 

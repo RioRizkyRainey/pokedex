@@ -9,6 +9,8 @@ message Pokemon {
     int32 height = 3;
     int32 weight = 4;
     int32 base_experience = 5;
+    int32 attack = 6;
+    int32 defense = 7;
 }
 
 message Params {

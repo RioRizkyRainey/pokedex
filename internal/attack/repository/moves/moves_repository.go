@@ -1,4 +1,4 @@
-package repository
+package moves
 
 import (
 	"github.com/RioRizkyRainey/pokedex/internal/attack/delivery/moves"

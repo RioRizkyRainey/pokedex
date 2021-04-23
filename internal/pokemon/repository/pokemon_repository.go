@@ -21,8 +21,9 @@ func InitPokemonRepository(Conn *sql.DB) *PokemonRepository {
 }
 
 func (r *PokemonRepository) GetPokemon(name string) (*model.Pokemon, error) {
-	query := `SELECT *
-		FROM pokemon
+	query := `SELECT p.pok_id, p.pok_name, p.pok_height, p.pok_weight, p.pok_base_experience, b.b_atk as pok_attack, b.b_def as pok_defense
+		FROM pokemon p
+		INNER JOIN base_stats b ON b.pok_id = p.pok_id
 		WHERE pok_name = ?`
 
 	rows, err := r.Conn.Query(query, name)
