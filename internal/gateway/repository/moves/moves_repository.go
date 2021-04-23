@@ -3,7 +3,7 @@ package moves
 import (
 	"context"
 
-	"github.com/RioRizkyRainey/pokedex/internal/attack/delivery/moves"
+	"github.com/RioRizkyRainey/pokedex/internal/gateway/delivery/moves"
 	"github.com/RioRizkyRainey/pokedex/pkg/model"
 )
 

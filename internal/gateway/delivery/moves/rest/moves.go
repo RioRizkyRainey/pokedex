@@ -5,26 +5,26 @@ import (
 	"encoding/json"
 	"net/http"
 
-	pokeUsecase "github.com/RioRizkyRainey/pokedex/internal/gateway/usecase/pokemon"
+	movesUsecase "github.com/RioRizkyRainey/pokedex/internal/gateway/usecase/moves"
 	"github.com/RioRizkyRainey/pokedex/pkg/model"
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
 )
 
 var (
-	pokemonUsecase pokeUsecase.PokemonUsecase
+	moveUsecase movesUsecase.MovesUsecase
 )
 
-func InitializeRouter(router *mux.Router, useCase pokeUsecase.PokemonUsecase) {
-	pokemonUsecase = useCase
-	router.HandleFunc("/api/pokemon/{name}", GetPokemon).Methods("GET")
+func InitializeRouter(router *mux.Router, m movesUsecase.MovesUsecase) {
+	moveUsecase = m
+	router.HandleFunc("/api/pokemon/{name}/moves", GetPokemon).Methods("GET")
 }
 
 func GetPokemon(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	pokemonName := params["name"]
 
-	pokemon, err := pokemonUsecase.GetPokemon(context.Background(), pokemonName)
+	pokemon, err := moveUsecase.GetMove(context.Background(), pokemonName)
 	if err != nil {
 		responsJson := &model.ResponseJSON{
 			Message: err.Error(),

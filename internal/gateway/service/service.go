@@ -11,7 +11,9 @@ import (
 	"time"
 
 	"github.com/RioRizkyRainey/pokedex/internal/gateway/config"
-	pokemon "github.com/RioRizkyRainey/pokedex/internal/gateway/service/pokemon"
+	"github.com/RioRizkyRainey/pokedex/internal/gateway/service/attack"
+	"github.com/RioRizkyRainey/pokedex/internal/gateway/service/moves"
+	"github.com/RioRizkyRainey/pokedex/internal/gateway/service/pokemon"
 	"github.com/gorilla/mux"
 	"github.com/hyperjumptech/jiffy"
 	"github.com/mattn/go-colorable"
@@ -80,6 +82,7 @@ func recoverPanic() {
 }
 
 func InitializeRouter() {
+	fmt.Println("Initialize Router")
 
 	cOpts := []grpc.DialOption{grpc.WithInsecure()}
 	pokeConn, err := grpc.Dial(config.Get("pokemon.server.host")+config.Get("pokemon.server.port"), cOpts...)
@@ -87,18 +90,20 @@ func InitializeRouter() {
 		panic(err)
 	}
 
-	// moveConn, err := grpc.Dial(config.Get("move.server.host")+config.Get("move.server.port"), cOpts...)
-	// if err != nil {
-	// 	panic(err)
-	// }
+	moveConn, err := grpc.Dial(config.Get("move.server.host")+config.Get("move.server.port"), cOpts...)
+	if err != nil {
+		panic(err)
+	}
 
-	// attackConn, err := grpc.Dial(config.Get("attack.server.host")+config.Get("attack.server.port"), cOpts...)
-	// if err != nil {
-	// 	panic(err)
-	// }
+	attackConn, err := grpc.Dial(config.Get("attack.server.host")+config.Get("attack.server.port"), cOpts...)
+	if err != nil {
+		panic(err)
+	}
 
 	Router = mux.NewRouter()
 	pokemon.Server(Router, pokeConn)
+	moves.Server(Router, moveConn)
+	attack.Server(Router, attackConn)
 }
 
 // Start this server

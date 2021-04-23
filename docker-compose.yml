@@ -1,0 +1,55 @@
+version: '3.7'
+services:
+  pokemon:
+    build: 
+        context: ./
+        dockerfile: dockerfile/pokemon.dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - pokedex
+      - default
+    env_file: .env
+
+  moves:
+    build: 
+        context: ./
+        dockerfile: dockerfile/moves.dockerfile
+    ports:
+        - "3001:3001"
+    networks:
+        - pokedex
+        - default
+    env_file: .env
+  
+  attack:
+    build: 
+        context: ./
+        dockerfile: dockerfile/attack.dockerfile
+    ports:
+        - "3002:3002"
+    networks:
+        - pokedex
+        - default
+    env_file: .env
+
+  gateway:
+    build: 
+        context: ./
+        dockerfile: dockerfile/gateway.dockerfile
+    ports:
+        - "8080:8080"
+    networks:
+        - pokedex
+        - default
+    depends_on:
+        - pokemon
+        - moves
+        - attack
+    env_file: .env
+
+networks:
+    default:
+        external: 
+            name: external
+    pokedex:

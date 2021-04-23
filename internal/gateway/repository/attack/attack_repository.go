@@ -14,7 +14,7 @@ type AttackRepositoryI interface {
 	GetDamage(attackName string, attackMove string, defendName string) (int32, error)
 }
 
-func InitMovesRepository(Conn *attack.Client) *AttackRepository {
+func InitAttackRepository(Conn *attack.Client) *AttackRepository {
 	return &AttackRepository{Conn: Conn}
 }
 

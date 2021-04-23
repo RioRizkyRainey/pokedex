@@ -41,9 +41,11 @@ func (c *Client) GetMoves(ctx context.Context, name string) ([]*model.Moves, err
 
 func transformToModel(moveRpc *moves_grpc.Move) *model.Moves {
 	return &model.Moves{
-		MoveID:    moveRpc.Id,
-		MovePower: &moveRpc.Power,
-		MoveName:  moveRpc.Name,
-		MovePp:    moveRpc.Pp,
+		MoveID:       moveRpc.Id,
+		MovePower:    &moveRpc.Power,
+		MoveName:     moveRpc.Name,
+		MovePp:       moveRpc.Pp,
+		Type:         moveRpc.Type,
+		MoveAccuracy: &moveRpc.Accuracy,
 	}
 }

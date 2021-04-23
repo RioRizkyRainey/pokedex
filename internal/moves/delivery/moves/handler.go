@@ -71,5 +71,6 @@ func transformToRpc(moves *model.Moves) *moves_grpc.Move {
 		Power:    power,
 		Pp:       moves.MovePp,
 		Accuracy: accuracy,
+		Type:     moves.Type,
 	}
 }

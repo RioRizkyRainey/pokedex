@@ -1,4 +1,4 @@
-package attack
+package pokemon
 
 import (
 	"github.com/RioRizkyRainey/pokedex/internal/gateway/delivery/pokemon"
