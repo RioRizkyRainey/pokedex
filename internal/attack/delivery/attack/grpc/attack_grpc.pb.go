@@ -14,86 +14,86 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// PokemonHandlerClient is the client API for PokemonHandler service.
+// AttackHandlerClient is the client API for AttackHandler service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type PokemonHandlerClient interface {
-	GetPokemon(ctx context.Context, in *Params, opts ...grpc.CallOption) (*Data, error)
+type AttackHandlerClient interface {
+	GetDamage(ctx context.Context, in *Params, opts ...grpc.CallOption) (*Data, error)
 }
 
-type pokemonHandlerClient struct {
+type attackHandlerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewPokemonHandlerClient(cc grpc.ClientConnInterface) PokemonHandlerClient {
-	return &pokemonHandlerClient{cc}
+func NewAttackHandlerClient(cc grpc.ClientConnInterface) AttackHandlerClient {
+	return &attackHandlerClient{cc}
 }
 
-func (c *pokemonHandlerClient) GetPokemon(ctx context.Context, in *Params, opts ...grpc.CallOption) (*Data, error) {
+func (c *attackHandlerClient) GetDamage(ctx context.Context, in *Params, opts ...grpc.CallOption) (*Data, error) {
 	out := new(Data)
-	err := c.cc.Invoke(ctx, "/attack.PokemonHandler/GetPokemon", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/attack.AttackHandler/GetDamage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// PokemonHandlerServer is the server API for PokemonHandler service.
-// All implementations must embed UnimplementedPokemonHandlerServer
+// AttackHandlerServer is the server API for AttackHandler service.
+// All implementations must embed UnimplementedAttackHandlerServer
 // for forward compatibility
-type PokemonHandlerServer interface {
-	GetPokemon(context.Context, *Params) (*Data, error)
-	mustEmbedUnimplementedPokemonHandlerServer()
+type AttackHandlerServer interface {
+	GetDamage(context.Context, *Params) (*Data, error)
+	mustEmbedUnimplementedAttackHandlerServer()
 }
 
-// UnimplementedPokemonHandlerServer must be embedded to have forward compatible implementations.
-type UnimplementedPokemonHandlerServer struct {
+// UnimplementedAttackHandlerServer must be embedded to have forward compatible implementations.
+type UnimplementedAttackHandlerServer struct {
 }
 
-func (UnimplementedPokemonHandlerServer) GetPokemon(context.Context, *Params) (*Data, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPokemon not implemented")
+func (UnimplementedAttackHandlerServer) GetDamage(context.Context, *Params) (*Data, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDamage not implemented")
 }
-func (UnimplementedPokemonHandlerServer) mustEmbedUnimplementedPokemonHandlerServer() {}
+func (UnimplementedAttackHandlerServer) mustEmbedUnimplementedAttackHandlerServer() {}
 
-// UnsafePokemonHandlerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to PokemonHandlerServer will
+// UnsafeAttackHandlerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to AttackHandlerServer will
 // result in compilation errors.
-type UnsafePokemonHandlerServer interface {
-	mustEmbedUnimplementedPokemonHandlerServer()
+type UnsafeAttackHandlerServer interface {
+	mustEmbedUnimplementedAttackHandlerServer()
 }
 
-func RegisterPokemonHandlerServer(s grpc.ServiceRegistrar, srv PokemonHandlerServer) {
-	s.RegisterService(&PokemonHandler_ServiceDesc, srv)
+func RegisterAttackHandlerServer(s grpc.ServiceRegistrar, srv AttackHandlerServer) {
+	s.RegisterService(&AttackHandler_ServiceDesc, srv)
 }
 
-func _PokemonHandler_GetPokemon_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _AttackHandler_GetDamage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Params)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PokemonHandlerServer).GetPokemon(ctx, in)
+		return srv.(AttackHandlerServer).GetDamage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/attack.PokemonHandler/GetPokemon",
+		FullMethod: "/attack.AttackHandler/GetDamage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PokemonHandlerServer).GetPokemon(ctx, req.(*Params))
+		return srv.(AttackHandlerServer).GetDamage(ctx, req.(*Params))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// PokemonHandler_ServiceDesc is the grpc.ServiceDesc for PokemonHandler service.
+// AttackHandler_ServiceDesc is the grpc.ServiceDesc for AttackHandler service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var PokemonHandler_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "attack.PokemonHandler",
-	HandlerType: (*PokemonHandlerServer)(nil),
+var AttackHandler_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "attack.AttackHandler",
+	HandlerType: (*AttackHandlerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetPokemon",
-			Handler:    _PokemonHandler_GetPokemon_Handler,
+			MethodName: "GetDamage",
+			Handler:    _AttackHandler_GetDamage_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
