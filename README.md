@@ -71,4 +71,16 @@ Terdapat 4 Microservice dalam repo ini
    Memberikan data damage yang akan diterima lawan jika. Attack Service akan berhubungan dengan Pokémon Service dan Move Service untuk mengkalkulasi damage
 
 Semua service berkomunikasi dengan gRPC. Namun, data yang akan ditampikan ke Client (Postman, Android apapun itu :D) akan berupa json.
-![alt](https://link)
+
+![Diagram](https://github.com/RioRizkyRainey/pokedex/blob/master/assets/diagram.png)
+
+Setiap service akan memiliki 3 layer
+1. Delivery
+   Menghandle komunikasi service dengan service lainnya, bisa berupa gRPC/Rest
+2. Use Case
+   Menghandle bussines logic
+3. Model
+   Mengambil data yang diperlukan, bisa dari database maupun ambil data dari service lain
+
+![Diagram2](https://github.com/RioRizkyRainey/pokedex/blob/master/assets/diagram2.png)
+
