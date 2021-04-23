@@ -3,7 +3,7 @@ package moves
 import (
 	"context"
 
-	moves_grpc "github.com/RioRizkyRainey/pokedex/internal/attack/delivery/moves/grpc"
+	moves_grpc "github.com/RioRizkyRainey/pokedex/internal/gateway/delivery/moves/grpc"
 	"github.com/RioRizkyRainey/pokedex/pkg/model"
 	"google.golang.org/grpc"
 )

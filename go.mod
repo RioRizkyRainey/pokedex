@@ -6,6 +6,8 @@ require (
 	github.com/DATA-DOG/go-sqlmock v1.5.0
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/golang/protobuf v1.4.1
+	github.com/gorilla/mux v1.8.0
+	github.com/hyperjumptech/jiffy v1.0.0
 	github.com/mattn/go-colorable v0.0.9
 	github.com/sirupsen/logrus v1.7.0
 	github.com/snowzach/rotatefilehook v0.0.0-20180327172521-2f64f265f58c
@@ -14,5 +16,4 @@ require (
 	google.golang.org/grpc v1.33.2
 	google.golang.org/protobuf v1.25.0
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
-	gorm.io/gorm v1.21.8 // indirect
 )

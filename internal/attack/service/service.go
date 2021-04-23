@@ -108,8 +108,17 @@ func Start() {
 	}
 
 	server := grpc.NewServer(grpc.MaxRecvMsgSize(1024*1024*32), grpc.MaxSendMsgSize(1024*1024*32))
+	cOpts := []grpc.DialOption{grpc.WithInsecure()}
+	pokeConn, err := grpc.Dial(config.Get("pokemon.server.host")+config.Get("pokemon.server.port"), cOpts...)
+	if err != nil {
+		panic(err)
+	}
+	moveConn, err := grpc.Dial(config.Get("move.server.host")+config.Get("move.server.port"), cOpts...)
+	if err != nil {
+		panic(err)
+	}
 
-	attack.Server(server, DB)
+	attack.Server(server, pokeConn, moveConn)
 
 	reflection.Register(server)
 

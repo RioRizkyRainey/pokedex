@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package pokemon;
+option go_package = ".;grpc";
+
+message Pokemon {
+    int32 id = 1;
+    string name = 2;
+    int32 height = 3;
+    int32 weight = 4;
+    int32 base_experience = 5;
+    int32 attack = 6;
+    int32 defense = 7;
+}
+
+message Params {
+    string name = 1;
+}
+
+message ErrorMessage {
+    string message = 1;
+    string reason = 2;
+    string error_user_title = 3;
+    string error_user_msg = 4;
+}
+
+
+message Data {
+    int32 status = 1;
+    string message = 2;
+    Pokemon data = 3;
+    ErrorMessage error = 4;
+}
+
+service PokemonHandler {
+    rpc GetPokemon(Params) returns (Data);
+}

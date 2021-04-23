@@ -3,7 +3,7 @@ package pokemon
 import (
 	"context"
 
-	pokemon_grpc "github.com/RioRizkyRainey/pokedex/internal/attack/delivery/pokemon/grpc"
+	pokemon_grpc "github.com/RioRizkyRainey/pokedex/internal/gateway/delivery/pokemon/grpc"
 	"github.com/RioRizkyRainey/pokedex/pkg/model"
 	"google.golang.org/grpc"
 )

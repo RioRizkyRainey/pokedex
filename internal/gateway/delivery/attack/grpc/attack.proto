@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package attack;
+option go_package = ".;grpc";
+
+message Params {
+    string attack_name = 1;
+    string attack_move = 2;
+    string defend_name = 3;
+}
+
+message ErrorMessage {
+    string message = 1;
+    string reason = 2;
+    string error_user_title = 3;
+    string error_user_msg = 4;
+}
+
+
+message Data {
+    int32 status = 1;
+    string message = 2;
+    int32 data = 3;
+    ErrorMessage error = 4;
+}
+
+service AttackHandler {
+    rpc GetDamage(Params) returns (Data);
+}

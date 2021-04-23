@@ -58,5 +58,7 @@ func transformToRpc(pokemon *model.Pokemon) *pokemon_grpc.Pokemon {
 		Weight:         pokemon.PokWeight,
 		Height:         pokemon.PokHeight,
 		BaseExperience: pokemon.PokBaseExperience,
+		Attack:         pokemon.PokAttack,
+		Defense:        pokemon.PokDefense,
 	}
 }

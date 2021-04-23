@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/RioRizkyRainey/pokedex/internal/gateway/service"
 )
 
 func main() {
@@ -39,4 +41,6 @@ func main() {
 	fmt.Println(`Pokédex.
 	The Pokédex s a digital encyclopedia created by Professor Oak as an invaluable tool to Trainers in the Pokémon world.
 	It gives information about all Pokémon in the world that are contained in its database, although it differs in how it acquires and presents information over the different media.`)
+
+	service.Start()
 }
