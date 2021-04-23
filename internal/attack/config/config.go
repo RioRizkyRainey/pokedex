@@ -26,6 +26,11 @@ func initialize() {
 	defCfg["server.log.level"] = viper.GetString(`ATTACK_SERVER_LOG_LEVEL`) // valid values are trace, debug, info, warn, error, fatal
 
 	defCfg["server.address"] = fmt.Sprintf("%s:%s", viper.GetString(`ATTACK_SERVER_HOST`), viper.GetString(`ATTACK_SERVER_PORT`))
+
+	defCfg["pokemon.connect.host"] = viper.GetString(`ATTACK_POKEMON_CONNECT_HOST`)
+	defCfg["pokemon.connect.port"] = viper.GetString(`ATTACK_POKEMON_CONNECT_PORT`)
+	defCfg["move.connect.host"] = viper.GetString(`ATTACK_MOVE_CONNECT_HOST`)
+	defCfg["move.connect.port"] = viper.GetString(`ATTACK_MOVE_CONNECT_PORT`)
 	defCfg["server.host"] = viper.GetString(`ATTACK_SERVER_HOST`)
 	defCfg["server.port"] = viper.GetString(`ATTACK_SERVER_PORT`)
 	defCfg["db.mysql.host"] = viper.GetString(`ATTACK_DB_MYSQL_HOST`)
@@ -35,11 +40,6 @@ func initialize() {
 	defCfg["db.mysql.name"] = viper.GetString(`ATTACK_DB_MYSQL_NAME`)
 	defCfg["db.mysql.maxidle"] = viper.GetString(`ATTACK_DB_MYSQL_MAXIDLE`)
 	defCfg["db.mysql.maxopen"] = viper.GetString(`ATTACK_DB_MYSQL_MAXOPEN`)
-
-	defCfg["pokemon.server.host"] = viper.GetString(`POKEMON_CONNECT_HOST`)
-	defCfg["pokemon.server.port"] = viper.GetString(`POKEMON_CONNECT_PORT`)
-	defCfg["move.server.host"] = viper.GetString(`MOVES_CONNECT_HOST`)
-	defCfg["move.server.port"] = viper.GetString(`MOVES_CONNECT_PORT`)
 
 	for k := range defCfg {
 		err := viper.BindEnv(k)

@@ -28,7 +28,7 @@ RUN apk upgrade --update-cache --available && \
     apk add build-base && \
     apk add openssl-dev
 
-RUN apk --no-cache add ca-certificates
+RUN apk --no-cache add curl
 
 RUN rm -vrf /var/cache/apk/*
 

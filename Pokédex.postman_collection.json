@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "17e34dc8-69b4-4bdb-9f4a-f0de725ddee9",
+		"name": "Pokédex",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Pokemon Detail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/pokemon/bulbasaur",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pokemon",
+						"bulbasaur"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pokemon Moves",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/pokemon/bulbasaur/moves",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pokemon",
+						"bulbasaur",
+						"moves"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Calculate Damage",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/attack?attack_name=charmander&attack_move=flamethrower&defend_name=bulbasaur",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"attack"
+					],
+					"query": [
+						{
+							"key": "attack_name",
+							"value": "charmander"
+						},
+						{
+							"key": "attack_move",
+							"value": "flamethrower"
+						},
+						{
+							"key": "defend_name",
+							"value": "bulbasaur"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

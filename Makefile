@@ -18,3 +18,12 @@ attack:
 
 gateway:
 	go run cmd/gateway/main/main.go
+
+run:
+	@docker-compose up -d gateway
+
+test:
+	go install github.com/newm4n/goornogo
+	export GO111MODULE on; \
+	go test ./... -cover -vet -all -v -short -covermode=count -coverprofile=coverage.out
+	goornogo -i coverage.out -c 30

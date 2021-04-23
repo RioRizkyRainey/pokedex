@@ -15,12 +15,13 @@ func TestGetPokemon(t *testing.T) {
 		t.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
 	}
 	defer db.Close()
-	rows := sqlmock.NewRows([]string{"pok_id", "pok_name", "pok_height", "pok_weight", "pok_base_experience"}).
-		AddRow(1, "bulbasaur", 12, 12, 3)
+	rows := sqlmock.NewRows([]string{"pok_id", "pok_name", "pok_height", "pok_weight", "pok_base_experience", "pok_attack", "pok_defense"}).
+		AddRow(1, "bulbasaur", 12, 12, 3, 4, 6)
 
-	query := regexp.QuoteMeta(`SELECT *
-						FROM pokemon
-						WHERE pok_name = ?`)
+	query := regexp.QuoteMeta(`SELECT p.pok_id, p.pok_name, p.pok_height, p.pok_weight, p.pok_base_experience, b.b_atk as pok_attack, b.b_def as pok_defense
+		FROM pokemon p
+		INNER JOIN base_stats b ON b.pok_id = p.pok_id
+		WHERE pok_name = ?`)
 
 	mock.ExpectQuery(query).WillReturnRows(rows)
 

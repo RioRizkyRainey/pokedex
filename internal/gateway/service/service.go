@@ -85,22 +85,24 @@ func InitializeRouter() {
 	fmt.Println("Initialize Router")
 
 	cOpts := []grpc.DialOption{grpc.WithInsecure()}
-	pokeConn, err := grpc.Dial(config.Get("pokemon.server.host")+config.Get("pokemon.server.port"), cOpts...)
+	fmt.Println("address " + config.Get("pokemon.connect.host") + config.Get("pokemon.connect.port"))
+	pokeConn, err := grpc.Dial(config.Get("pokemon.connect.host")+config.Get("pokemon.connect.port"), cOpts...)
 	if err != nil {
 		panic(err)
 	}
 
-	moveConn, err := grpc.Dial(config.Get("move.server.host")+config.Get("move.server.port"), cOpts...)
+	fmt.Println("address " + config.Get("move.connect.host") + config.Get("move.connect.port"))
+	moveConn, err := grpc.Dial(config.Get("move.connect.host")+config.Get("move.connect.port"), cOpts...)
 	if err != nil {
 		panic(err)
 	}
 
-	attackConn, err := grpc.Dial(config.Get("attack.server.host")+config.Get("attack.server.port"), cOpts...)
+	fmt.Println("address " + config.Get("attack.connect.host") + config.Get("attack.connect.port"))
+	attackConn, err := grpc.Dial(config.Get("attack.connect.host")+config.Get("attack.connect.port"), cOpts...)
 	if err != nil {
 		panic(err)
 	}
 
-	Router = mux.NewRouter()
 	pokemon.Server(Router, pokeConn)
 	moves.Server(Router, moveConn)
 	attack.Server(Router, attackConn)
@@ -111,9 +113,8 @@ func Start() {
 	defer recoverPanic()
 	startTime := time.Now()
 
+	Router = mux.NewRouter()
 	configureLogging()
-
-	InitializeRouter()
 
 	var wait time.Duration
 
@@ -146,6 +147,9 @@ func Start() {
 		IdleTimeout:  IdleTimeout,
 		Handler:      Router, // Pass our instance of gorilla/mux in.
 	}
+
+	InitializeRouter()
+
 	// Run our server in a goroutine so that it doesn't block.
 	go func() {
 		if err := srv.ListenAndServe(); err != nil {

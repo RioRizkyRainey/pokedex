@@ -9,6 +9,7 @@ require (
 	github.com/gorilla/mux v1.8.0
 	github.com/hyperjumptech/jiffy v1.0.0
 	github.com/mattn/go-colorable v0.0.9
+	github.com/newm4n/goornogo v1.0.2 // indirect
 	github.com/sirupsen/logrus v1.7.0
 	github.com/snowzach/rotatefilehook v0.0.0-20180327172521-2f64f265f58c
 	github.com/spf13/viper v1.7.1

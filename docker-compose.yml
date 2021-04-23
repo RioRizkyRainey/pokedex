@@ -26,6 +26,8 @@ services:
     build: 
         context: ./
         dockerfile: dockerfile/attack.dockerfile
+    expose: 
+        - "3002"
     ports:
         - "3002:3002"
     networks:
@@ -53,3 +55,4 @@ networks:
         external: 
             name: external
     pokedex:
+        driver: "bridge"
